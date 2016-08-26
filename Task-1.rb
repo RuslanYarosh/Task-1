@@ -3,15 +3,15 @@ module Tasks
     if x < 0 or y < 0 or z < 0 or w<=0
       puts "Enter x,y,z>=0 w>0"
     else
-      rusik = [x,y,z].sort.reverse  # sort the variables in the array from high to low
-      result = 0  # number of gift options
-      n1 = w / rusik[0]  # define how much the required value is greater than the value at index 0
-      0.upto(n1) do |i|
-        first = (w - i*rusik[0])
-        n2 = first / rusik[1]
+      gift = [x,y,z].sort.reverse  # sort the variables(gifts) in the array from high to low weight
+      result = 0  # the desired result is set to 0
+      n1 = w / gift[0]  # possible number of gifts with index 0
+      0.upto(n1) do |i| # cycle from 0 to n1 gifts with index 0
+        first = (w - i*gift[0])  # the total weight of the residue after placing first gift
+        n2 = first / gift[1]  #
         0.upto(n2) do |k|
-          second = (first - k*rusik[1])
-          last = second % rusik[2]
+          second = (first - k*gift[1])
+          last = second % gift[2]
           result += 1 if last == 0
         end
       end
